@@ -1,0 +1,41 @@
+{% extends 'main/dad.html' %}
+{% block body %}
+<div>
+    <div class="hats">
+        <img class="hats_img" src="https://cdn.pixabay.com/photo/2019/09/12/18/29/street-cafe-4472312_1280.jpg">
+    </div>
+    <div class="content_text">
+        <h1>Меню «Кавуна»</h1>
+        <p>Трохи кави. Трохи солодкого. І багато любові ❤️</p>
+        <p>Ми віримо, що щастя починається з маленьких речей — горнятка ароматної кави чи шматочка улюбленого десерту.</p>
+    </div>
+<div class="content">
+    {% if subcategories %}
+        {% for sub in subcategories %}
+            {% if sub.id %}
+                <a href="{% url 'category_detail' sub.id %}" class="content_item">
+                    <img class="content_img" src="{{ sub.image.url }}" alt="{{ sub.name }}">
+                    <div class="overlay_text">{{ sub.name }}</div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+    {% if products %}
+        {% for product in products %}
+            {% if product.id %}
+                    <a href="{% url 'product_detail' category.id product.id%}" class="content_item">
+                        <img class="content_img" src="{{ product.image.url }}" alt="{{ sub.name }}">
+                        <div class="overlay_text">{{ product.name }}</div>
+                    </a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+</div>
+
+
+{% endblock %}
+
